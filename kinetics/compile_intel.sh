@@ -1,12 +1,9 @@
-# change here as well ...
-module load PrgEnv-cray/8.4.0
-module load openblas/0.3.24
-
+# load mkl module ...
+# TODO
+#
 rm shprot.x *.o *.mod *.eps
 
 FC=ifx
-FC=gfortran
-FC=ftn
 
 $FC -c kind_module.f90 \
        constants.f90 \
@@ -27,14 +24,8 @@ $FC -c kind_module.f90 \
        OpenMP_dvode_f90_m.f90 \
        main.f90
 
-# use with gnu
-#$FC *.o -O3 -lopenblas -o shprot.x
-
-# use with cray
-$FC *.o -o shprot.x
-
 # use with intel
-#$FC *.o -lmkl -o shprot.x
+$FC *.o -fast -qmkl -o shprot.x
 
 time ./shprot.x
 #./plot

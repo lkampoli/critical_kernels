@@ -112,15 +112,17 @@
  const  = One/s * (nu+Two*ns**(One/s)/(s+One))*Svt*theta1/theta
  const2 = (ns**(One/s)/(s+1)*Svt*theta1/theta)**Two
 
- x0     = Two
+! x0     = Two
 
+!FIX:
 ! call myfunc%set_function(my_func) ! set the function
 ! call zeroin:
 ! myfunc%i = 0
 ! call myfunc%find_zero(ax+0.0001_wp,bx/two+0.0001,tole,xzero,fzero,iflag)
 ! call myfunc%find_zero(ax+0.0001_wp,bx/two+0.1,tole,xzero,fzero,iflag)
 
- Cvt = xzero
+! Cvt = xzero
+ Cvt = Zero 
 
  deltaa = (One-Cvt*Cvt*Cvt)/(Cvt*Cvt*Cvt) * TwoPi*om/alpha/vm0/Cvt
  phi    = f_2oPi * atan(sqrt(Two*depth/muu)/vm0)

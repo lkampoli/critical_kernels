@@ -1,12 +1,10 @@
-# change here as well ...
-module load PrgEnv-cray/8.4.0
+module load cce/16.0.1
+module load gcc/12.2.0
 module load openblas/0.3.24
 
 rm shprot.x *.o *.mod *.eps
 
-FC=ifx
 FC=gfortran
-FC=ftn
 
 $FC -c kind_module.f90 \
        constants.f90 \
@@ -28,13 +26,10 @@ $FC -c kind_module.f90 \
        main.f90
 
 # use with gnu
-#$FC *.o -O3 -lopenblas -o shprot.x
-
-# use with cray
-$FC *.o -o shprot.x
-
-# use with intel
-#$FC *.o -lmkl -o shprot.x
+#$FC *.o -O0 -lopenblas -o shprot.x
+#$FC *.o -O1 -lopenblas -o shprot.x
+#$FC *.o -O2 -lopenblas -o shprot.x
+$FC *.o -O3  -lopenblas -o shprot.x
 
 time ./shprot.x
 #./plot
